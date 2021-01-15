@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import people from "./data";
 import { FaChevronLeft, FaChevronRight, FaQuoteRight } from "react-icons/fa";
-
+fghfgh;
 const Review = () => {
   const [index, setIndex] = useState(0); //  initial state used yo select specific data in array
   const { name, image, job, text } = people[index];
