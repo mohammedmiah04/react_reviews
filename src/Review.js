@@ -1,16 +1,34 @@
 import React, { useState } from "react";
 import people from "./data";
 import { FaChevronLeft, FaChevronRight, FaQuoteRight } from "react-icons/fa";
-fghfgh;
+
 const Review = () => {
   const [index, setIndex] = useState(0); //  initial state used yo select specific data in array
   const { name, image, job, text } = people[index];
 
+  const checkNumber = (number) => {
+    if (number > people.length - 1) {
+      return 0;
+    }
+    if (number < 0) {
+      return people.length - 1;
+    }
+    return number;
+  };
+
+  const randomPerson = () => {
+    let randomNumber = Math.floor(Math.random() * people.length);
+    if (randomNumber === index) {
+      return checkNumber(randomNumber + 1);
+    }
+
+    return setIndex(checkNumber(randomNumber));
+  };
   const nextPerson = () => {
-    setIndex((index) => index + 1); // function to increase index with each click
+    setIndex((index) => checkNumber(index + 1)); // function to increase index with each click
   };
   const prevPerson = () => {
-    setIndex((index) => index - 1); // function to decrease index with each click
+    setIndex((index) => checkNumber(index - 1)); // function to decrease index with each click
   };
 
   return (
@@ -33,7 +51,9 @@ const Review = () => {
           <FaChevronRight />
         </button>
       </div>
-      <button className="random-btn">surprise me</button>
+      <button className="random-btn" onClick={randomPerson}>
+        surprise me
+      </button>
     </article>
   );
 };
